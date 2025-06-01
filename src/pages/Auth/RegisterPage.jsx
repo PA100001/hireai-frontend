@@ -183,8 +183,9 @@ const RegisterPage = () => {
                       labelId="role-label"
                       id="role"
                       label="Role"
+                      displayEmpty
                     >
-                      <MenuItem value=""><em>Select a role</em></MenuItem>
+                      <MenuItem value="" disabled><em>Select a role</em></MenuItem>
                       <MenuItem value="1">Job Seeker</MenuItem>
                       <MenuItem value="2">Recruiter</MenuItem>
                     </Select>

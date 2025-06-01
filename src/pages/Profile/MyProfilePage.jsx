@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import * as profileService from '../../services/profileService';
 import {
   Container, Typography, Card, CardContent, CardActions, Button, Box, CircularProgress, Alert,
-  Avatar, Grid, TextField, Paper, IconButton, Tooltip
+  Avatar, Grid, TextField, Paper, IconButton, Tooltip, Link
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -124,7 +124,7 @@ const MyProfilePage = () => {
           <Box>
             <Typography variant="h4" gutterBottom>{name}</Typography>
             <Typography variant="subtitle1" color="textSecondary">{email}</Typography>
-            <Typography variant="body2" color="textSecondary" sx={{textTransform: 'capitalize'}}>{role}</Typography>
+            <Typography variant="body2" color="textSecondary" sx={{textTransform: 'capitalize'}}>{(role == "1")? "Candidate":"Recruiter"}</Typography>
           </Box>
           <Button
             variant="outlined"
