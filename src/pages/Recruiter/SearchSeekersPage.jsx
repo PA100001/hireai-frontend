@@ -15,10 +15,10 @@ const SeekerResultCard = ({ seeker }) => (
   <Card sx={{ mb: 2, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', p:2, width: '100%' }}>
     <Avatar
       src={seeker.profilePictureUrl || undefined}
-      alt={seeker.fullName}
+      alt={seeker.id}
       sx={{ width: { xs: 80, sm: 60 }, height: { xs: 80, sm: 60 }, mr: { sm: 2 }, mb: { xs: 1, sm: 0 } }}
     >
-      {seeker.fullName ? seeker.fullName.charAt(0).toUpperCase() : '?'}
+      {seeker.id ? seeker.id.charAt(0).toUpperCase() : '?'}
     </Avatar>
     <Box flexGrow={1} width="100%">
       <Typography
@@ -27,18 +27,24 @@ const SeekerResultCard = ({ seeker }) => (
         to={seeker.id ? `/profile/${seeker.id}` : '#'} // Use seeker.id (actual user ID from DB)
         sx={{textDecoration:'none', color: 'primary.main', '&:hover': {textDecoration: 'underline'}}}
       >
-          {seeker.fullName || 'N/A'}
+          {seeker.id || 'N/A'}
       </Typography>
       {seeker.headline && <Typography variant="body2" color="text.secondary" sx={{mb: 0.5}}>{seeker.headline}</Typography>}
-      {seeker.location?.city && (
+      {seeker?.city && (
         <Typography variant="caption" display="block" color="text.secondary">
-            {seeker.location.city}{seeker.location.state ? `, ${seeker.location.state}` : ''}{seeker.location.country ? `, ${seeker.location.country}` : ''}
+            {seeker.city}{seeker.state ? `, ${seeker.state}` : ''}{seeker.country ? `, ${seeker.country}` : ''}
         </Typography>
       )}
       {(seeker.skills && seeker.skills.length > 0) && ( // Ensure skills is an array
         <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
           {seeker.skills.slice(0, 7).map((skill, idx) => <Chip key={`${skill}-${idx}`} label={skill} size="small" />)}
           {seeker.skills.length > 7 && <Chip label={`+${seeker.skills.length - 7} more`} size="small" />}
+        </Box>
+      )}
+      {(seeker.certificationNames && seeker.certificationNames.length > 0) && ( // Ensure certificationNames is an array
+        <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+          {seeker.certificationNames.slice(0, 7).map((skill, idx) => <Chip key={`${skill}-${idx}`} label={skill} size="small" />)}
+          {seeker.certificationNames.length > 7 && <Chip label={`+${seeker.certificationNames.length - 7} more`} size="small" />}
         </Box>
       )}
        {typeof seeker.score === 'number' && ( // Check if score is a number
