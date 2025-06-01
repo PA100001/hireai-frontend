@@ -15,7 +15,7 @@ export const getUserProfileById = async (userId) => {
   try {
     // The endpoint might be /users/:userId/profile or /profiles/:userId etc.
     // Adjust to your actual API endpoint.
-    const response = await axiosInstance.get(`/recruiters/users/${userId}`); // Or a more specific public profile endpoint
+    const response = await axiosInstance.get(`/admin/users/${userId}`); // Or a more specific public profile endpoint
     return response.data; // Assuming API returns { success: true, data: { user: {...} } }
   } catch (error) {
     console.error('Error fetching user profile by ID:', error.response || error);
